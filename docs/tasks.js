@@ -27,6 +27,21 @@ module.exports = {
                 },
             }
         },
+        "/":{
+            get: {
+                tags: {
+                    Tasks: "Get all tasks",
+                },
+                description: "Get All Tasks",
+                operationId: "getAllTasks",
+                parameters: [],
+                requestBody: {},
+                responses: {
+                    200: { description: "Task updated successfully" },
+                    500: { description: "Server error" },
+                },
+            },
+        },
         "/id/{_id}": {
             put: {
                 tags: {
@@ -39,7 +54,7 @@ module.exports = {
                         name: "_id",
                         in: "path",
                         schema: {
-                            $ref: "#/components/schemas/_id",
+                            $ref: "#/components/schemas/Task/properties/_id",
                         },
                         description: "Id of Task to be updated",
                     },
@@ -53,6 +68,28 @@ module.exports = {
                 },
                 responses: {
                     200: { description: "Task updated successfully" },
+                    500: { description: "Server error" },
+                },
+            },
+            delete: {
+                tags: {
+                    Tasks: "Delete a task",
+                },
+                description: "Delete Task",
+                operationId: "deleteTask",
+                parameters: [
+                    {
+                        name: "_id",
+                        in: "path",
+                        schema: {
+                            $ref: "#/components/schemas/Task/properties/_id",
+                        },
+                        description: "Id of Task to be deleted",
+                    },
+                ],
+                requestBody: {},
+                responses: {
+                    200: { description: "Task deleted successfully" },
                     500: { description: "Server error" },
                 },
             },
