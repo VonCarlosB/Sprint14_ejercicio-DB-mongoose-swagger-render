@@ -12,7 +12,7 @@ module.exports = {
                     content: {
                         "application/json": {
                             schema: {
-                                $ref: "#/components/schemas/Task",
+                                $ref: "#/components/schemas/TaskInput",
                             },
                         },
                     },
@@ -35,9 +35,17 @@ module.exports = {
                 description: "Get All Tasks",
                 operationId: "getAllTasks",
                 parameters: [],
-                requestBody: {},
                 responses: {
-                    200: { description: "Task updated successfully" },
+                    200: {
+                        description: "Retrieved all tasks successfully",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    $ref: "#/components/schemas/Task",
+                                },
+                            },
+                        },
+                    },
                     500: { description: "Server error" },
                 },
             },
@@ -54,7 +62,7 @@ module.exports = {
                         name: "_id",
                         in: "path",
                         schema: {
-                            $ref: "#/components/schemas/Task/properties/_id",
+                            $ref: "#/components/schemas/_id",
                         },
                         description: "Id of Task to be updated",
                     },
@@ -62,7 +70,9 @@ module.exports = {
                 requestBody: {
                     content: {
                         "application/json": {
-                            schema: { $ref: "#/components/schemas/Task" },
+                            schema: {
+                                $ref: "#/components/schemas/TaskInput",
+                            },
                         },
                     },
                 },
@@ -82,12 +92,11 @@ module.exports = {
                         name: "_id",
                         in: "path",
                         schema: {
-                            $ref: "#/components/schemas/Task/properties/_id",
+                            $ref: "#/components/schemas/_id",
                         },
                         description: "Id of Task to be deleted",
                     },
                 ],
-                requestBody: {},
                 responses: {
                     200: { description: "Task deleted successfully" },
                     500: { description: "Server error" },
